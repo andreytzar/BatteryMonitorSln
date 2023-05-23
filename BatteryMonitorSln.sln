@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BatteryMonitorApp.Contracts", "BatteryMonitorApp.Contracts\BatteryMonitorApp.Contracts.csproj", "{D0A876BE-8120-4A20-A0A5-C00CC16D6EFE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BatteryMonitorApp.Domain", "BatteryMonitorApp.Domain\BatteryMonitorApp.Domain.csproj", "{1FB72559-3918-478C-8A2B-4584E958E18D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BatteryMonitorApp.UnitTests", "BatteryMonitorApp.UnitTests\BatteryMonitorApp.UnitTests.csproj", "{C10EE4DE-6EC1-4FEC-8ABD-91DC4B142C97}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BatteryMonitorApp.IntegrationTests", "BatteryMonitorApp.IntegrationTests\BatteryMonitorApp.IntegrationTests.csproj", "{CBD939EA-E874-4A1E-B2B1-1B252A2D792B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BatteryMonitorApp.PhysicalDeviceEmulator", "BatteryMonitorApp.PhysicalDeviceEmulator\BatteryMonitorApp.PhysicalDeviceEmulator.csproj", "{FA93CD91-2E2B-4B16-8BBC-648B88AF4670}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BatteryMonitorApp.WebApp", "BatteryMonitorApp.WebApp\BatteryMonitorApp.WebApp.csproj", "{69FF1926-7FB1-4E99-A018-B944C8DDA32A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D0A876BE-8120-4A20-A0A5-C00CC16D6EFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0A876BE-8120-4A20-A0A5-C00CC16D6EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0A876BE-8120-4A20-A0A5-C00CC16D6EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0A876BE-8120-4A20-A0A5-C00CC16D6EFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FB72559-3918-478C-8A2B-4584E958E18D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FB72559-3918-478C-8A2B-4584E958E18D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FB72559-3918-478C-8A2B-4584E958E18D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FB72559-3918-478C-8A2B-4584E958E18D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C10EE4DE-6EC1-4FEC-8ABD-91DC4B142C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C10EE4DE-6EC1-4FEC-8ABD-91DC4B142C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C10EE4DE-6EC1-4FEC-8ABD-91DC4B142C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C10EE4DE-6EC1-4FEC-8ABD-91DC4B142C97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBD939EA-E874-4A1E-B2B1-1B252A2D792B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBD939EA-E874-4A1E-B2B1-1B252A2D792B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBD939EA-E874-4A1E-B2B1-1B252A2D792B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBD939EA-E874-4A1E-B2B1-1B252A2D792B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA93CD91-2E2B-4B16-8BBC-648B88AF4670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA93CD91-2E2B-4B16-8BBC-648B88AF4670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA93CD91-2E2B-4B16-8BBC-648B88AF4670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA93CD91-2E2B-4B16-8BBC-648B88AF4670}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69FF1926-7FB1-4E99-A018-B944C8DDA32A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69FF1926-7FB1-4E99-A018-B944C8DDA32A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69FF1926-7FB1-4E99-A018-B944C8DDA32A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69FF1926-7FB1-4E99-A018-B944C8DDA32A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FF51253-06CA-4632-949C-855AF8C61D29}
+	EndGlobalSection
+EndGlobal

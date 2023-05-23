@@ -1,0 +1,39 @@
+﻿@using BatteryMonitorApp.Contracts.Models.Http;
+@model BatteryDevice;
+
+@{
+    ViewData["Title"] = "New Device";
+}
+<h1>@ViewData["Title"]</h1>
+<div class="row">
+    <div class="col-md-6">
+        <section>
+            <form method="post">
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="form-floating mb-3">
+                    <input asp-for="@Model.Id" class="form-control" aria-required="true" readonly="readonly" placeholder="Device Id" />
+                    <label asp-for="@Model.Id" class="form-label">Device Id</label>
+                    <span asp-validation-for="@Model.Id" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="@Model.DeviceName" class="form-control" aria-required="true" placeholder="DeviceName" />
+                    <label asp-for="@Model.DeviceName" class="form-label">DeviceName</label>
+                    <span asp-validation-for="@Model.DeviceName" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="@Model.DeviceDescription" class="form-control" aria-required="true" placeholder="DeviceDescription" />
+                    <label asp-for="@Model.DeviceDescription" class="form-label">DeviceDescription</label>
+                    <span asp-validation-for="@Model.DeviceDescription" class="text-danger"></span>
+                </div>
+                <div>
+                    <button type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

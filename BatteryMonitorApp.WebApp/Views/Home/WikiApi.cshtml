@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "API description";
+}
+<div class="d-inline-flex">
+<a href="~/swagger">
+        <img src="~/swagger/favicon-32x32.png" />
+        <b style="color:green">Swagger</b>
+    </a>
+</div>
+<hr/>
+<h1>API description</h1>
+<H4>
+## Events status</h4>
+<ul>
+<li>'Default=0' Assigned to any entry unless explicitly specified</li>
+<li>'Alarm=1' Usually applied if voltages or currents are above/below allowable values</li>
+<li>'LoadOfChargeOf=2' Charger and load circuit are disconnected. Battery at idle</li>
+<li>'LoadOnChargeOf=3' Load on, charger off</li>
+<li>'LoadOnChargeOn=4' Load on, charger on</li>
+<li>'LoadOfChargeOn=5' Load off, charger on</li>
+</ul>
+<h4>
+## Data Fields</h4>
+Datas has the following fields:
+<ul>
+<li>'DeviceId': unique device identifier. Required field.</li>
+<li>'Voltage': voltage. Required field.</li>
+<li>'Current': current. Not required field. Default 0.</li>
+<li>'VoltageCharger': voltage in the charger circuit.
+    Typically used to indicate that a charger is present but not connected to the battery circuit.
+    Not required field. Default 0.</li>
+<li>'DateTime': DateTime. Not required field. Default current Date Time.</li>
+<li>'Status': Event status. Not required field. Default 0.</li>
+</ul>
+<h4>## Endpoints</h4>
+The following endpoints are available in the API:
+<ul>
+    <li>'POST /api/data' simple format for sending data
+         <ul>To save device traffic, the request format FromBody:
+            <li>'Di': (DeviceId). Required field. guid string;</li>
+            <li>'V': (Voltage). Required field. float;</li>
+            <li>'C': (Current). Optional parameter. float;</li>
+            <li>'VC': (VoltageCharger). Optional parameter. float;</li>
+            <li>'Dt': (DateTime). Optional parameter. DateTime;</li>
+            <li>'S': (Status). Optional parameter. int;</li>
+         </ul>
+         <ul>Return:
+            <li>'Staus Ok' - if data added</li>
+            <li>'Status401Unauthorized' - Device not registed</li>
+            <li>'Status BadRequest' - if not data added</li>
+            <li>'Status 500InternalServerError' - if any errors</li>
+          </ul>
+       </li>
+    <li>'GET /api/data?Di=id' simple format for get data
+        <ul>
+        <li>Request short format:
+            <ul>
+             <li>'Di': (DeviceId). Required field. Guid string;</li>
+             <li>'F': (From). Optional parameter. DateTime;</li>
+             <li>'T': (To). Optional parameter. DateTime;</li>
+             <li>'S': (Array of Status). Optional parameter. int[];</li>
+            </ul>
+            </li>
+        <li>Return:
+            <ul>
+             <li>'Staus Ok'</li>
+                 <li>Contnent - array of Battery Data short format:</li>
+                    <li> 'V': (Voltage). Required field. float;</li>
+                     <li>'C': (Current). Optional parameter. float;</li>
+                     <li>'VC': (VoltageCharger). Optional parameter. float;</li>
+                     <li>'Dt': (DateTime). Optional parameter. DateTime;</li>
+                     <li>'S': (Status). Optional parameter. int;</li>
+             <li>'Status401Unauthorized' - Device not registed</li>
+             <li>'Status BadRequest' - if not data in Request</li>
+             <li>'Status 500InternalServerError' - if any errors</li>
+            </ul>
+            </li>
+            </ul>
+     </li>
+</ul>
+<hr/>
+<p>Inject code for your device like this:</p>
+<pre style="background-color:lightgray">
+<code>  public async Task PutData(CancellationToken token = default)
+    {
+        using var _client = new HttpClient() { BaseAddress = new Uri(this site) };
+        HttpResponseMessage response = await _client.PutAsync("api/data", 
+        new StringContent("{"Di":"DE88CE88-E888-8A88-8888-888888888888","V":"12"}", 
+        Encoding.UTF8, "application/json"), token);
+        if (!response.IsSuccessStatusCode)
+        {
+            //ToDo Something in your local storage
+        }
+    }</code></pre>

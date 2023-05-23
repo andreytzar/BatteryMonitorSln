@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Recharge and battery monitoring system";
+}
+
+<h1>
+    Recharge and battery monitoring system.
+</h1>
+<p>This is a simple system for capturing voltage and current events. Applicable for any Internet things that control the power supply of devices.</p>
+<hr />
+<h2>
+    This system provides easy access to:
+</h2>
+<ul>
+    <li><a asp-action="WikiApi">Simple API, Swagger</a></li>
+    <li><a asp-action="report" asp-controller="report">Responsive reporting and graphing system</a></li>
+    <li>collect current data on voltage and current in the battery circuit</li>
+    <li>record events and date time of events</li>
+    <li>collect data only for register device</li>
+    <li>receive event notifications</li>
+</ul>
+<hr />
+<h3>
+    Quick start:
+</h3>
+<ul>
+    <li><a asp-area="Identity" asp-page="/Account/Register">Register with your email and password</a></li>
+    <li>Or use login: <i>test@test.com</i> password: <i>tester</i></li>
+    <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+    <li><a asp-action="CreateRegisteredDevices">Register your device and write its ID</a></li>
+    <li><a asp-action="GetRegisteredDevices">View a list of registered devices for you</a></li>
+    <li>Inject code for your device like this:
+        <pre style="background-color:lightgray">
+<code>  public async Task PutData(CancellationToken token = default)
+    {
+        using var _client = new HttpClient() { BaseAddress = new Uri(this site) };
+        HttpResponseMessage response = await _client.PutAsync("api/data", 
+        new StringContent("{"Di":"DE88CE88-E888-8A88-8888-888888888888","V":"12"}", 
+        Encoding.UTF8, "application/json"), token);
+        if (!response.IsSuccessStatusCode)
+        {
+            //ToDo Something in your local storage
+        }
+    }</code></pre>
+    </li>
+    <li><a asp-action="Emulator" asp-controller="Physical">You can emulate data your device</a></li>
+    <li><a asp-action="report" asp-controller="report">View reports and graphs for your devices</a></li>
+</ul>

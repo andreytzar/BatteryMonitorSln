@@ -1,0 +1,94 @@
+﻿@using BatteryMonitorApp.Contracts.Models.Http;
+@model ReportGet;
+@{
+    ViewData["Title"] = "Battery graph and report";
+    var list = new List<string>();
+    string graph = string.Empty;
+    if (Model.BatteryDataViews != null)
+    {
+        foreach (var item in Model.BatteryDataViews)
+        {
+            list.Add($"{{x:'{item.DT}',y:{item.V.ToString().Replace(',', '.')}}}");
+        }
+        graph = string.Join(",", list);
+    }
+}
+<h1>@ViewData["Title"]</h1>
+<div class="row">
+    <div class="col-md-6">
+        <section>
+            <form method="Get" asp-action="report" id="formemule">
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <label class="form-floating mb-3" for="DeviceId">Choose a Device:</label>
+                <select class="form-floating mb-3" name="DeviceId" id="DeviceId" form="formemule">
+                    @foreach (var item in Model.Devices)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+                <div class="form-floating mb-3">
+                    <input asp-for="@Model.From" type="datetime-local" pattern="dd.dd.dddd dd:dd:dd" class="form-control" aria-required="true" placeholder="DateTime From" />
+                    <label asp-for="@Model.From" class="form-label">DateTime From </label>
+                    <span asp-validation-for="@Model.From" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="@Model.To" type="datetime-local" pattern="dd.dd.dddd dd:dd:dd" class="form-control" aria-required="true" placeholder="DateTime To" />
+                    <label asp-for="@Model.To" class="form-label">DateTime To </label>
+                    <span asp-validation-for="@Model.To" class="text-danger"></span>
+                </div>
+                <div>
+                    <button type="submit" class="w-100 btn btn-lg btn-primary">Generate report</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+<h4>Graph Voltage/Time.</h4>
+<div>
+    <canvas id="TimeVolts"></canvas>
+</div>
+
+<h3>Battrey data:</h3>
+<h5>Calculated capacity @Model.Capacity Ah</h5>
+<table class="table-borderless">
+    <thead>
+        <tr>
+            <th>DateTime</th>
+            <th>Status</th>
+            <th>Volts, V</th>
+            <th>Current, A</th>
+            <th>Charger, V</th>
+        </tr>
+    </thead>
+    @if (Model.BatteryDataViews != null)
+    {
+        foreach (var item in Model.BatteryDataViews)
+        {
+            <tr>
+                <th>@item.DT</th>
+                <th class="ml-2 p-1">@item.S</th>
+                <th class="ml-2 p-1">@item.V</th>
+                <th class="ml-2 p-1">@item.C</th>
+                <th class="ml-2 p-1"> @item.VC</th>
+            </tr>
+        }
+    }
+</table>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const vtime = document.getElementById('TimeVolts');
+
+    const cfvtime = {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: 'Voltage, V',
+                data: [@Html.Raw(graph)]
+            }]
+        }
+    };
+    new Chart(vtime, cfvtime);
+    console.log("start chart");
+</script>

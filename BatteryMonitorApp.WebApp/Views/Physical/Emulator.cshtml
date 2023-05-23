@@ -1,0 +1,52 @@
+﻿@using BatteryMonitorApp.Contracts.Models.Http;
+@model PhysicalDevice;
+@{
+    ViewData["Title"] = "Battery discharge emulation";
+}
+<h1>@ViewData["Title"]</h1>
+<div class="row">
+    <div class="col-md-6">
+        <section>
+            <form method="post" id="formemule" formaction="">
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <label class="form-floating mb-3" for="DeviceId">Choose a Device:</label>
+                <select class="form-floating mb-3" name="DeviceId" id="DeviceId" form="formemule">
+                    @foreach (var item in Model.Devices)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+                <div class="form-floating mb-3">
+                    <input asp-for="@Model.NominalCapacity" class="form-control" aria-required="true" placeholder="Nominal Capacity, Ah" />
+                    <label asp-for="@Model.NominalCapacity" class="form-label">NominalCapacity, Ah</label>
+                    <span asp-validation-for="@Model.NominalCapacity" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="@Model.NominalVolts" class="form-control" aria-required="true" placeholder="Nominal Volts, V" />
+                    <label asp-for="@Model.NominalVolts" class="form-label">NominalCapacity, V</label>
+                    <span asp-validation-for="@Model.NominalVolts" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="@Model.Current" class="form-control" aria-required="true" placeholder="Discharge Current, A" />
+                    <label asp-for="@Model.Current" class="form-label">Discharge Current, A</label>
+                    <span asp-validation-for="@Model.Current" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="@Model.Delaysecs" class="form-control" aria-required="true" placeholder="Delay, secs" />
+                    <label asp-for="@Model.Delaysecs" class="form-label">Delay, secs</label>
+                    <span asp-validation-for="@Model.Delaysecs" class="text-danger"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="@Model.Start" type="datetime-local" pattern="dd.dd.dddd dd:dd:dd" class="form-control" aria-required="true" placeholder="DateTime start" />
+                    <label asp-for="@Model.Start" class="form-label">DateTime start </label>
+                    <span asp-validation-for="@Model.Start" class="text-danger"></span>
+                </div>
+                <div>
+                    <button type="submit" class="w-100 btn btn-lg btn-primary">Emulation Discharge</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
